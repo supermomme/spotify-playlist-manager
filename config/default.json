@@ -5,5 +5,55 @@
   "paginate": {
     "default": 10,
     "max": 50
-  }
+  },
+  "authentication": {
+    "secret": "45a4ccef5fedbf70b64d0326aff35edbce1f1566a622ef68573b3660ec9720547a24fa76b2b06300b414d6b92e9689e60a72d3ab7bca2077f8c02fdbd0d630a33afd0135b471504612e48abd9d8a47abdfcfb9d991743a98919a7031e3a773ca9c9aa47a9030157b260e4ea8e1a65bc9bb10021a28694a5e75b624b300463a1cc6c23d59c5a777a32607339d74dbd5eb88ad392d1988fc9f98a5ead33fd6edd322e63ecd40860a807b130e5c52392e90e4374388beb2710493ba11757fa284bf487b384329f01a6f262187bcd35cc46ac3a784a639223b5bbd6c070f32381c2e3c22f245646fbbcc0d0ba602514114797f9a73a63001deda1572e7dd0eb8ac56",
+    "strategies": [
+      "jwt"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "spotify": {
+      "clientID": "SPOTIFY_CLIENT_ID",
+      "clientSecret": "SPOTIFY_CLIENT_SECRET",
+      "callbackURL": "http://localhost:3000/api/auth/spotify/callback",
+      "successRedirect": "/",
+      "scope": [
+        "playlist-modify-private",
+        "playlist-read-private",
+        "playlist-modify-public",
+        "playlist-read-collaborative",
+        "user-follow-read",
+        "user-follow-modify",
+        "user-read-private",
+        "user-read-email",
+        "user-read-birthdate",
+        "user-top-read",
+        "user-read-recently-played",
+        "user-library-modify",
+        "user-library-read",
+        "user-read-playback-state",
+        "user-read-currently-playing",
+        "user-modify-playback-state",
+        "streaming"
+      ]
+    },
+    "cookie": {
+      "enabled": true,
+      "name": "feathers-jwt",
+      "httpOnly": false,
+      "secure": false
+    }
+  },
+  "mongodb": "mongodb://localhost:27017/spotify_playlist_manager"
 }
