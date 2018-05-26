@@ -6,9 +6,13 @@ class Service {
     this.options = options || {};
   }
 
+  setup (app) {
+    this.app = app
+  }
+
   async get (id, params) {
     let Authorization = `Bearer ${params.user.spotify.accessToken}`
-    return axios.get(`https://api.spotify.com/v1/users/${params.user.spotifyId}/playlists/${id}`, { headers: { Authorization }})
+    return axios.get(`https://api.spotify.com/v1/users/${params.user.spotify.profile.id}/playlists/${id}`, { headers: { Authorization }})
       .then(res => res.data)
   }
 }
